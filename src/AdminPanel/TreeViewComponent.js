@@ -37,7 +37,7 @@ const StyledTreeItem = styled(TreeItem)(() => {
 });
 
 export default function TreeViewComponent(props) {
-    console.log("render")
+
     const renderTree = (nodes) => {
         const element=<div>
                         <div>{nodes.rule}</div>
@@ -63,7 +63,7 @@ export default function TreeViewComponent(props) {
                 
                 aria-label="rich object"
             >
-              {renderTree(props.data)}
+              {props.data != {}  ? renderTree(props.data) : <p> EMPTY TREE </p>}
              
                 
             </TreeView>

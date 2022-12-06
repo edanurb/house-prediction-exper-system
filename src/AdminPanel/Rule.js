@@ -5,73 +5,14 @@ import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import deneme from '../deneme.json'
-
-
-
-
-
-const dataJSON={
-  
-    id:"1",
-    rule:"Rules",
-    child:[
-      {
-        id:"2",
-        rule:"Ilce == \"Çankaya\"",
-        result:"20",
-        child:[]
-      },
-      {
-        id:"3",
-        rule:"sema",
-        child:[
-          {
-            id:"8",
-            rule:"blaa",
-            child:[]
-          },
-          {
-            id:"10",
-            rule:"blaa",
-            child:[
-              {
-                id:"18",
-                rule:"blaa",
-                child:[]
-              },
-              {
-                id:"110",
-                rule:"blaa",
-                child:[]
-              }
-      
-            ]
-          }
-  
-        ]
-      },
-      {
-        id:"4",
-        rule:"gaye",
-        child:[
-          {
-            id:"5",
-            rule:"bla"
-          }
-  
-        ]
-  
-      }
-    ]
-    
-  };
-  
+import {useEffect} from "react";
+import axios from "../axios";
 
 export default function Rule() {
     const[nodeId, setNodeId] = React.useState("");
     const [ruleInputVal, setRuleInputVal] = React.useState("");
     const [resultInputVal, setResultInputVal] = React.useState("");
-    const [datta, setData] = React.useState(deneme);
+    const [datta, setData] = React.useState({});
 
     const handleNodeSelect = (event, nodeId) => {
         setNodeId(nodeId);
@@ -81,7 +22,7 @@ export default function Rule() {
 
         if (nodeId != "" && ruleInputVal != "") {
 
-            const newData = { ...dataJSON }
+            const newData = { ...datta }
 
             //newData.child.push({id:"55",rule:"befyula"})
             const node = find(newData, nodeId)
@@ -166,7 +107,7 @@ export default function Rule() {
         setResultInputVal(event.target.value)
     }
     function handleDeleteData() {
-        const newData = { ...dataJSON }
+        const newData = { ...datta }
         deletefind(newData, nodeId)
         console.log(newData)
         setData(newData)
@@ -174,7 +115,7 @@ export default function Rule() {
     function handleEditData() {
         if (ruleInputVal != "") {
 
-            const newData = { ...dataJSON }
+            const newData = { ...datta }
 
             //newData.child.push({id:"55",rule:"befyula"})
             let node = find(newData, nodeId)
@@ -195,6 +136,14 @@ export default function Rule() {
             setData(newData)
         }
     }
+
+    useEffect(() => {
+        axios.get("/api/rule/getRules").then(response => {
+            console.log(response.data.data);
+            setData(response.data.data);
+        } )
+    },[])
+
     return (
         <div>
             <TextField
