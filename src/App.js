@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import * as React from 'react';
 import './App.css';
+import ResponsiveAppBar from './ReponsiveAppBar';
+import Rule from './AdminPanel/Rule';
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './Home/home';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  
+  // const theme = {
+  //   spacing: 8,
+  // }
+  return(
+    <div>
+      
+      <ResponsiveAppBar/>
+   
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}/>
+        <Route path="/AdminPanel" element={<Rule />} />
+
+      </Routes>
+    </BrowserRouter>
     </div>
   );
+
+  
 }
 
+
 export default App;
+
