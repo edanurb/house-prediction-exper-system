@@ -1,6 +1,4 @@
 import * as React from 'react';
-import deneme from './deneme.json'
-
 
 export default function Questions(){
     
@@ -62,8 +60,8 @@ export default function Questions(){
 
     dataJSON.child.forEach(function(element){
         element=element.split(" ")
-        
-        console.log("is")
+
+      console.log("is")
     })
     
 

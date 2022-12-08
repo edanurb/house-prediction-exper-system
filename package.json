@@ -19,7 +19,9 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.1.1",
     "styled-components": "^5.3.6",
+    "toast": "^0.5.4",
     "web-vitals": "^2.1.4",
     "write-json-file": "^5.0.0",
     "yarn": "^1.22.19"
@@ -52,5 +54,6 @@
     "fs": false,
     "path": false,
     "os": false
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

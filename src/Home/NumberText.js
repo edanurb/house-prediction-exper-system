@@ -1,22 +1,20 @@
 import { TextField } from "@mui/material"
-import { useState } from "react"
-import { InputLabel } from '@mui/material';
+import { useState} from "react"
 
 export default function NumberText(props){
 
-    const [input,setInput]=useState("0")
-    const defaultVal="0"
+    const [input]=useState("0")
 
     function handleChange(event){
-        
-        setInput(event.target.value.replace(/[^0-9]/g,""))
+        const {
+            target: {value},
+        } = event;
+        props.setterFunction(value);
     }
     return(
-       
-        
         <TextField 
             defaultValue={input.defaultValue}
-            value={input}
+            value={props.value}
             label={props.label}
             style = {{width: 150}} 
             onChange={handleChange} 

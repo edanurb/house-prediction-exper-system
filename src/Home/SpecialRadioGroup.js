@@ -6,9 +6,13 @@ import FormLabel from '@mui/material/FormLabel'
 
 export default function SpecialRadioGroup(props) {
 
-    function checkRadio(event){
-        console.log(event.target.value)
+    function checkRadio(event) {
+        const {
+            target: {value},
+        } = event;
+        props.setterFunction(value);
     }
+
     return (
         <FormControl>
             <FormLabel id="demo-radio-buttons-group-label">{props.label}</FormLabel>
@@ -19,9 +23,9 @@ export default function SpecialRadioGroup(props) {
                 name="radio-buttons-group"
             >
                 {
-                    props.radioValues.map((value)=><FormControlLabel value={value} control={<Radio />} label={value} />)
+                    props.radioValues.map((value) => <FormControlLabel value={value} control={<Radio/>} label={value}/>)
                 }
-            
+
             </RadioGroup>
         </FormControl>
     );
