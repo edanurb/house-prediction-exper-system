@@ -1,15 +1,13 @@
 import TreeViewComponent from './TreeViewComponent';
-import Box from '@mui/material/Box';
-import {v4 as uuidv4} from 'uuid';
+-import {v4 as uuidv4} from 'uuid';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import deneme from '../deneme.json'
-import {useEffect} from "react";
-import axios from "../axios";
+-import {useEffect} from "react";
+import axios from "../api/axios";
 
 export default function Rule() {
-    const[nodeId, setNodeId] = React.useState("");
+    const [nodeId, setNodeId] = React.useState("");
     const [ruleInputVal, setRuleInputVal] = React.useState("");
     const [resultInputVal, setResultInputVal] = React.useState("");
     const [datta, setData] = React.useState({});
@@ -22,38 +20,38 @@ export default function Rule() {
 
         if (nodeId != "" && ruleInputVal != "") {
 
-            const newData = { ...datta }
+            const newData = {...datta}
 
             //newData.child.push({id:"55",rule:"befyula"})
             const node = find(newData, nodeId)
             if (resultInputVal == "")
-                node.child.push({ id: uuidv4(), rule: ruleInputVal, child: [] })
+                node.child.push({id: uuidv4(), rule: ruleInputVal, child: []})
             else
-                node.child.push({ id: uuidv4(), rule: ruleInputVal, result: resultInputVal, child: [] })
+                node.child.push({id: uuidv4(), rule: ruleInputVal, result: resultInputVal, child: []})
             console.log(newData)
             setData(newData)
-         
+
         }
-        
-        
+
+
         // setNodeId("34")
     }
+
     function find(data, nodeId) {
         if (data.id == nodeId) {
             return data
-        }
-        else {
+        } else {
             return lookup(data.child, nodeId)
         }
     }
+
     function lookup(data, k) {
         for (let key in data) {
             let value = data[key]
 
             if (value.id == k) {
                 return value
-            }
-            else {
+            } else {
                 if (value.child && value.child.length != 0) {
                     // console.log("girdi")
                     var result = lookup(value.child, k)
@@ -67,14 +65,15 @@ export default function Rule() {
 
         return null;
     }
+
     function deletefind(data, nodeId) {
         if (data.id == nodeId) {
             return;
-        }
-        else {
+        } else {
             deletelookup(data.child, nodeId)
         }
     }
+
     function deletelookup(data, k) {
         for (let key in data) {
             let value = data[key]
@@ -83,8 +82,7 @@ export default function Rule() {
                 console.log("delete girdi");
                 delete data[key]
                 return;
-            }
-            else {
+            } else {
                 if (value.child && value.child.length != 0) {
                     // console.log("girdi")
                     deletelookup(value.child, k)
@@ -98,24 +96,25 @@ export default function Rule() {
     }
 
 
-
-
     function handleRuleInputChange(event) {
         setRuleInputVal(event.target.value)
     }
+
     function handleResultInputChange(event) {
         setResultInputVal(event.target.value)
     }
+
     function handleDeleteData() {
-        const newData = { ...datta }
+        const newData = {...datta}
         deletefind(newData, nodeId)
         console.log(newData)
         setData(newData)
     }
+
     function handleEditData() {
         if (ruleInputVal != "") {
 
-            const newData = { ...datta }
+            const newData = {...datta}
 
             //newData.child.push({id:"55",rule:"befyula"})
             let node = find(newData, nodeId)
@@ -123,8 +122,7 @@ export default function Rule() {
                 node.id = uuidv4()
                 node.rule = ruleInputVal
                 node.child = node.child
-            }
-            else {
+            } else {
                 node.id = uuidv4()
                 node.rule = ruleInputVal
                 node.result = resultInputVal
@@ -141,8 +139,8 @@ export default function Rule() {
         axios.get("/api/rule/getRules").then(response => {
             console.log(response.data.data);
             setData(response.data.data);
-        } )
-    },[])
+        })
+    }, [])
 
     return (
         <div>
@@ -151,7 +149,7 @@ export default function Rule() {
                 label="Rule"
                 multiline
                 maxRows={4}
-                sx={{ m: 2 }}
+                sx={{m: 2}}
                 value={ruleInputVal}
                 onChange={handleRuleInputChange}
 
@@ -162,16 +160,16 @@ export default function Rule() {
                 label="Result (Optional)"
                 multiline
                 maxRows={4}
-                sx={{ m: 2 }}
+                sx={{m: 2}}
                 value={resultInputVal}
                 onChange={handleResultInputChange}
 
 
             />
-            <Button sx={{ m: 2 }} variant="contained" onClick={handleAddData}>Add</Button>
-            <Button sx={{ m: 2 }} variant="contained" onClick={handleDeleteData}>Delete</Button>
-            <Button sx={{ m: 2 }} variant="contained" onClick={handleEditData}>Edit</Button>
-            <TreeViewComponent data={datta} handleNodeSelect={handleNodeSelect} />
+            <Button sx={{m: 2}} variant="contained" onClick={handleAddData}>Add</Button>
+            <Button sx={{m: 2}} variant="contained" onClick={handleDeleteData}>Delete</Button>
+            <Button sx={{m: 2}} variant="contained" onClick={handleEditData}>Edit</Button>
+            <TreeViewComponent data={datta} handleNodeSelect={handleNodeSelect}/>
 
         </div>
     );

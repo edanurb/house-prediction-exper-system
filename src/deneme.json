@@ -1,55 +1,49 @@
 {
-  
-    "id":"1",
-    "rule":"Rules",
-    "child":[
-      {
-        "id":"2",
-        "rule":"Ilce == \"Çankaya\"",
-        "result":"20",
-        "child":[]
-      },
-      {
-        "id":"3",
-        "rule":"sema",
-        "child":[
-          {
-            "id":"8",
-            "rule":"blaa",
-            "child":[]
-          },
-          {
-            "id":"10",
-            "rule":"blaa",
-            "child":[
-              {
-                "id":"18",
-                "rule":"blaa",
-                "child":[]
-              },
-              {
-                "id":"110",
-                "rul":"blaa",
-                "child":[]
-              }
-      
-            ]
-          }
-  
-        ]
-      },
-      {
-        "id":"4",
-        "rule":"gaye",
-        "child":[
-          {
-            "id":"5",
-            "rule":"bla"
-          }
-  
-        ]
-  
-      }
-    ]
-    
+  "id": "1",
+  "rule": "Rules",
+  "child": [
+    {
+      "id": "2",
+      "rule": "Ilce == \"Çankaya\"",
+      "result": "20",
+      "child": []
+    },
+    {
+      "id": "3",
+      "rule": "sema",
+      "child": [
+        {
+          "id": "8",
+          "rule": "blaa",
+          "child": []
+        },
+        {
+          "id": "10",
+          "rule": "blaa",
+          "child": [
+            {
+              "id": "18",
+              "rule": "blaa",
+              "child": []
+            },
+            {
+              "id": "110",
+              "rul": "blaa",
+              "child": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "rule": "gaye",
+      "child": [
+        {
+          "id": "5",
+          "rule": "bla"
+        }
+      ]
+    }
+  ]
 }
