@@ -4,7 +4,7 @@ import TreeView from '@mui/lab/TreeView';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { styled } from "@mui/material/styles";
-
+import _ from "lodash";
 import  TreeItem ,{ treeItemClasses } from "@mui/lab/TreeItem";
 
 // type StyledTreeItemProps = {
@@ -39,6 +39,8 @@ const StyledTreeItem = styled(TreeItem)(() => {
 export default function TreeViewComponent(props) {
 
     const renderTree = (nodes) => {
+      
+        if(!_.isEmpty(nodes)){
         const element=<div>
                         <div>{nodes.rule}</div>
                         {nodes.result &&  <div>{ "Result: " + nodes.result}</div>}
@@ -50,8 +52,9 @@ export default function TreeViewComponent(props) {
             : null}
         </StyledTreeItem>
         )};
+        }
   
-       
+  
     return (
         <div>
            
@@ -63,7 +66,8 @@ export default function TreeViewComponent(props) {
                 
                 aria-label="rich object"
             >
-              {props.data != {}  ? renderTree(props.data) : <p> EMPTY TREE </p>}
+              
+              { renderTree(props.data)}
              
                 
             </TreeView>
