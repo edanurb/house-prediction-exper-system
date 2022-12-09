@@ -1,9 +1,9 @@
 import TreeViewComponent from './TreeViewComponent';
--import {v4 as uuidv4} from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import Button from '@mui/material/Button';
--import {useEffect} from "react";
+import {useEffect} from "react";
 import axios from "../api/axios";
 
 export default function Rule() {

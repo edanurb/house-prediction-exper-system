@@ -5,6 +5,7 @@ import {toast} from "react-toastify";
 const SAVE_JSON_URL ="/api/json/save"
 export async function sendJsonToServer() {
 
+    console.log(JSON.stringify(denemeJson))
     return await axios
         .post(
             SAVE_JSON_URL,
