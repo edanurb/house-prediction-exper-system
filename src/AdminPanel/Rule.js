@@ -5,6 +5,8 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import {useEffect} from "react";
 import axios from "../api/axios";
+import denemeJson from "../deneme.json";
+import {sendJsonToServer} from "../api/JsonApi";
 
 export default function Rule() {
     const [nodeId, setNodeId] = React.useState("");
@@ -137,11 +139,16 @@ export default function Rule() {
 
     useEffect(() => {
         axios.get("/api/rule/getRules").then(response => {
-            console.log(response.data.data);
-            setData(response.data.data);
+            setData(response.data.data.ruleBase);
         })
     }, [])
 
+    async function saveJson(){
+
+        console.log(JSON.stringify(denemeJson))
+        sendJsonToServer(datta)
+
+    }
     return (
         <div>
             <TextField
@@ -170,6 +177,9 @@ export default function Rule() {
             <Button sx={{m: 2}} variant="contained" onClick={handleDeleteData}>Delete</Button>
             <Button sx={{m: 2}} variant="contained" onClick={handleEditData}>Edit</Button>
             <TreeViewComponent data={datta} handleNodeSelect={handleNodeSelect}/>
+            <Button onClick={() => {saveJson()}}>
+                Save Rules!
+            </Button>
 
         </div>
     );

@@ -4,8 +4,7 @@ import SpecialCheckBox from "./SpecialCheckBox";
 import Button from "@mui/material/Button";
 import {useState} from "react";
 import {sendQuery} from "../api/QueryApi";
-import denemeJson from "../deneme.json"
-import {sendJsonToServer} from "../api/JsonApi";
+
 
 export default function Home() {
 
@@ -41,11 +40,6 @@ export default function Home() {
         sendQuery(queryObject);
     }
 
-   function saveJson(){
-        console.log(JSON.stringify(denemeJson))
-        sendJsonToServer()
-    }
-
     return (
         <div>
             <SpecialRadioGroup label="İlçe" radioValues={ilceValues} setterFunction={setNeighourhood}
@@ -62,9 +56,7 @@ export default function Home() {
                 query()
             }}>Sorgula</Button>
                 <br/>
-            <Button onClick={() => {saveJson()}}>
-                Save JSON!
-            </Button>
+
         </div>
     );
 }
