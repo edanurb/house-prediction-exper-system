@@ -7,6 +7,7 @@ import {useEffect} from "react";
 import axios from "../api/axios";
 import denemeJson from "../deneme.json";
 import {sendJsonToServer} from "../api/JsonApi";
+import Box from '@mui/material/Box';
 
 export default function Rule() {
     const [nodeId, setNodeId] = React.useState("");
@@ -70,7 +71,7 @@ export default function Rule() {
 
     function deletefind(data, nodeId) {
         if (data.id == nodeId) {
-            return;
+            return ;
         } else {
             deletelookup(data.child, nodeId)
         }
@@ -78,12 +79,16 @@ export default function Rule() {
 
     function deletelookup(data, k) {
         for (let key in data) {
+            console.log(key)
             let value = data[key]
 
             if (value.id == k) {
+                console.log(data)
                 console.log("delete girdi");
-                delete data[key]
-                return;
+
+                data.splice(key,1)
+                console.log(data)
+                return ;
             } else {
                 if (value.child && value.child.length != 0) {
                     // console.log("girdi")
@@ -107,7 +112,7 @@ export default function Rule() {
     }
 
     function handleDeleteData() {
-        const newData = {...datta}
+        let newData = {...datta}
         deletefind(newData, nodeId)
         console.log(newData)
         setData(newData)
@@ -150,13 +155,13 @@ export default function Rule() {
 
     }
     return (
-        <div>
+        <Box sx={{m:2}}>
             <TextField
                 id="outlined-multiline-flexible"
                 label="Rule"
                 multiline
                 maxRows={4}
-                sx={{m: 2}}
+                sx={{mr: 2,width: '50%'}}
                 value={ruleInputVal}
                 onChange={handleRuleInputChange}
 
@@ -167,20 +172,20 @@ export default function Rule() {
                 label="Result (Optional)"
                 multiline
                 maxRows={4}
-                sx={{m: 2}}
+                sx={{mr: 2,width: 'auto'}}
                 value={resultInputVal}
                 onChange={handleResultInputChange}
 
 
             />
-            <Button sx={{m: 2}} variant="contained" onClick={handleAddData}>Add</Button>
-            <Button sx={{m: 2}} variant="contained" onClick={handleDeleteData}>Delete</Button>
-            <Button sx={{m: 2}} variant="contained" onClick={handleEditData}>Edit</Button>
+            <Button sx={{mr: 2,mt:1}} variant="contained" onClick={handleAddData}>Add</Button>
+            <Button sx={{mr: 2,mt:1}} variant="contained" onClick={handleDeleteData}>Delete</Button>
+            <Button sx={{mt: 1}} variant="contained" onClick={handleEditData}>Edit</Button>
             <TreeViewComponent data={datta} handleNodeSelect={handleNodeSelect}/>
             <Button onClick={() => {saveJson()}}>
                 Save Rules!
             </Button>
 
-        </div>
+        </Box>
     );
 }

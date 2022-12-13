@@ -16,7 +16,8 @@ export async function sendQuery(queryObject) {
         floor: queryObject.kat,
         meterSquare: queryObject.metrekare,
         totalRoomNumber: queryObject.toplam_oda,
-        age: queryObject.yas
+        age: queryObject.yas,
+        district:queryObject.semt
     }
     console.log(JSON.stringify(queryRequest))
     axios.post(RECEIVE_QUERY_URL, JSON.stringify(queryRequest), {

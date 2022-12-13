@@ -14,9 +14,10 @@ export default function SpecialRadioGroup(props) {
     }
 
     return (
-        <FormControl>
+        <FormControl >
             <FormLabel id="demo-radio-buttons-group-label">{props.label}</FormLabel>
             <RadioGroup
+                sx={{display:'grid',gridTemplateColumns: 'repeat(2, 1fr)'}}
                 aria-labelledby="radio-buttons-group-label"
                 // defaultValue={props.radioValues[0]}
                 onChange={checkRadio}

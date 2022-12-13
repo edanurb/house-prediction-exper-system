@@ -22,7 +22,7 @@ export default function SpecialCheckBox(props) {
     }
 
     return (
-        <FormGroup onChange={handleSelect}>
+        <FormGroup  onChange={handleSelect}>
             <FormLabel id="demo-radio-buttons-group-label">{props.label}</FormLabel>
             {
                 props.values.map((value) => <FormControlLabel control={<Checkbox value={value}/>} label={value}/>)
