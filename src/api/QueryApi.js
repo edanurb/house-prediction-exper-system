@@ -17,15 +17,29 @@ export async function sendQuery(queryObject) {
         meterSquare: queryObject.metrekare,
         totalRoomNumber: queryObject.toplam_oda,
         age: queryObject.yas,
-        district:queryObject.semt
+        district:queryObject.semt,
+        distanceOfMetro: queryObject.distanceOfMetro,
+        distanceOfMarket: queryObject.distanceOfMarket,
+        inSite:queryObject.inSite,
+        hasView:queryObject.hasView,
+        hasGarage: queryObject.hasGarage,
+        hasBuiltInKitchen: queryObject.hasBuiltInKitchen,
+        hasSteelDoor: queryObject.hasSteelDoor,
+        isRenovated: queryObject.isRenovated,
+        hasPool: queryObject.hasPool,
+        hasGym: queryObject.hasGym
+
     }
     console.log(JSON.stringify(queryRequest))
     axios.post(RECEIVE_QUERY_URL, JSON.stringify(queryRequest), {
+
         headers: {
             "Content-Type": "application/json",
         },
     })
         .then((response) => {
+
+
             toast.success(response.data.message);
         }).catch(() => {
             toast.error("Error Occured")
