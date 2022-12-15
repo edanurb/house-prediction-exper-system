@@ -28,7 +28,30 @@ export async function sendQuery(queryObject) {
         hasSteelDoor: queryObject.hasSteelDoor,
         isRenovated: queryObject.isRenovated,
         hasPool: queryObject.hasPool,
-        hasGym: queryObject.hasGym
+        hasGym: queryObject.hasGym,
+        hasFirePlace              :queryObject.hasFirePlace,
+        hasSecurity               :queryObject.hasSecurity,
+        hasGreenFeatures          :queryObject.hasGreenFeatures,
+        hasOutdoorLivingSpace     :queryObject.hasOutdoorLivingSpace,
+        hasBalcony                :queryObject.hasBalcony,
+        hasWineCellar             :queryObject.hasWineCellar,
+        hasHomeTheatre            :queryObject.hasHomeTheatre,
+        hasHighCeiling            :queryObject.hasHighCeiling,
+        hasElevator               :queryObject.hasElevator,
+        hasJacuzzi                :queryObject.hasJacuzzi,
+        hasSauna                  :queryObject.hasSauna,
+        isNearBeach               :queryObject.isNearBeach,
+        hasAirConditioning        :queryObject.hasAirConditioning,
+        hasSmartHomeAutomation    :queryObject.hasSmartHomeAutomation,
+        isSoundProof              :queryObject.isSoundProof,
+        isHeatProof               :queryObject.isHeatProof,
+        hasCentralAirConditioning :queryObject.hasCentralAirConditioning,
+        hasInternetInfrastructure :queryObject.hasInternetInfrastructure,
+        hasDressingRoom           :queryObject.hasDressingRoom,
+        hasDoorman                :queryObject.hasDoorman,
+        hasChildPark              :queryObject.hasChildPark,
+        isEarthquakeResistant     :queryObject.isEarthquakeResistant,
+        hasWalkingPath            :queryObject.hasWalkingPath
 
     }
     console.log(JSON.stringify(queryRequest))

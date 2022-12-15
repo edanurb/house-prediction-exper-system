@@ -16,7 +16,15 @@ export default function Home() {
     const esyaDurumu = ["Eşyalı", "Eşyasız"]
     const cephe = ["Kuzey", "Guney", "Dogu", "Bati"]
     const floorArr=['Ara Kat', 'Giriş/Zemin', 'Kot/Bodrum', 'En Üst Kat', '21 ve üzeri'];
-    const additionalFeaturesValues=["Site İçersinde","Manzaralı","Otopark Var","Ankastre Mutfaklı","Çelik Kapılı","Tadilat Yapılmış","Havuz Var","Spor Salonu Var"]
+    const additionalFeaturesValues=["Site İçersinde","Manzaralı","Otopark Var","Ankastre Mutfaklı","Çelik Kapılı","Tadilat Yapılmış","Havuz Var","Spor Salonu Var",
+    "Şöminesi Var","Güvenlik Var","Yeşil Alanları Var",
+        "Açık Yaşam Alanı Var","Balkonlu","Şarap Mahzeni Var",
+    "Sinema Odası var","Yüksek Tavanlı","Asansörlü","Jakuzi Var" ,
+        "Sauna Var","Sahile Yakın","Klima Var","Akıllı Ev Sistemi Var",
+    "Ses Yalıtımlı","Isı Yalıtımlı","Merkezi Isıtma Var",
+        "Internet Altyapısı Var","Giyinme Odası Var",
+    "Kapıcı Var","Çocuk Parkı Var","Depreme Dayanıklı",
+        "Yürüme Yolu Var"]
 
     const [roomNumber, setRoomNumber] = useState(0);
     const [netMetersquare, setNetMeterSquare] = useState(0)
@@ -55,8 +63,30 @@ export default function Home() {
             hasSteelDoor:additionalFeatures.includes("Çelik Kapılı"),
             isRenovated:additionalFeatures.includes("Tadilat Yapılmış"),
             hasPool:additionalFeatures.includes("Havuz Var"),
-            hasGym:additionalFeatures.includes("Spor Salonu Var")
-
+            hasGym:additionalFeatures.includes("Spor Salonu Var"),
+            hasFirePlace:additionalFeatures.includes("Şöminesi Var"),
+            hasSecurity:additionalFeatures.includes("Güvenlik Var"),
+            hasGreenFeatures:additionalFeatures.includes("Yeşil Alanları Var"),
+            hasOutdoorLivingSpace:additionalFeatures.includes("Açık Yaşam Alanı Var"),
+            hasBalcony:additionalFeatures.includes("Balkonlu"),
+            hasWineCellar:additionalFeatures.includes("Şarap Mahzeni Var"),
+            hasHomeTheatre:additionalFeatures.includes("Sinema Odası var"),
+            hasHighCeiling:additionalFeatures.includes("Yüksek Tavanlı"),
+            hasElevator:additionalFeatures.includes("Asansörlü"),
+            hasJacuzzi:additionalFeatures.includes("Jakuzi Var"),
+            hasSauna:additionalFeatures.includes("Sauna Var"),
+            isNearBeach:additionalFeatures.includes("Sahile Yakın"),
+            hasAirConditioning:additionalFeatures.includes("Klima Var"),
+            hasSmartHomeAutomation:additionalFeatures.includes("Akıllı Ev Sistemi Var"),
+            isSoundProof:additionalFeatures.includes("Ses Yalıtımlı"),
+            isHeatProof:additionalFeatures.includes("Isı Yalıtımlı"),
+            hasCentralAirConditioning:additionalFeatures.includes("Merkezi Isıtma Var"),
+            hasInternetInfrastructure:additionalFeatures.includes("Internet Altyapısı Var"),
+            hasDressingRoom:additionalFeatures.includes("Giyinme Odası Var"),
+            hasDoorman:additionalFeatures.includes("Kapıcı Var"),
+            hasChildPark:additionalFeatures.includes("Çocuk Parkı Var"),
+            isEarthquakeResistant:additionalFeatures.includes("Depreme Dayanıklı"),
+            hasWalkingPath:additionalFeatures.includes("Yürüme Yolu Var")
         }
         sendQuery(queryObject).then( (response) => {
             console.log(response)
@@ -85,7 +115,7 @@ export default function Home() {
 
             <Box sx={{ mt:4,display: 'grid' ,gap:4,gridTemplateColumns: '1fr'}}>
             <h3>Ek Özellikler</h3>
-            <MultipleSelectInput label="Ek özellikler" values={additionalFeaturesValues} setterFunction={setAdditionalFeatures} value={additionalFeatures}/>
+            <MultipleSelectInput label="Ek özellikler" values={additionalFeaturesValues.sort()} setterFunction={setAdditionalFeatures} value={additionalFeatures}/>
 
             <NumberText label="Metroya Olan Uzaklık(metre)" setterFunction={setDistanceOfMetro} value={distanceOfMetro}/>
             <NumberText label="Markete Olan Uzaklık(metre)" setterFunction={setDistanceOfMarket} value={distanceOfMarket}/>
