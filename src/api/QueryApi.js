@@ -1,10 +1,11 @@
 import axios from './axios'
 import {toast} from "react-toastify";
+import {useState} from "react";
 
 const RECEIVE_QUERY_URL = "/api/query/receiveQuery"
 
 export async function sendQuery(queryObject) {
-
+    let result;
     let queryRequest = {
         bathroomNumber: queryObject.banyo,
         west: queryObject.bati,
@@ -17,11 +18,11 @@ export async function sendQuery(queryObject) {
         meterSquare: queryObject.metrekare,
         totalRoomNumber: queryObject.toplam_oda,
         age: queryObject.yas,
-        district:queryObject.semt,
+        district: queryObject.semt,
         distanceOfMetro: queryObject.distanceOfMetro,
         distanceOfMarket: queryObject.distanceOfMarket,
-        inSite:queryObject.inSite,
-        hasView:queryObject.hasView,
+        inSite: queryObject.inSite,
+        hasView: queryObject.hasView,
         hasGarage: queryObject.hasGarage,
         hasBuiltInKitchen: queryObject.hasBuiltInKitchen,
         hasSteelDoor: queryObject.hasSteelDoor,
@@ -31,19 +32,17 @@ export async function sendQuery(queryObject) {
 
     }
     console.log(JSON.stringify(queryRequest))
-    axios.post(RECEIVE_QUERY_URL, JSON.stringify(queryRequest), {
+    return axios.post(RECEIVE_QUERY_URL, JSON.stringify(queryRequest), {
 
         headers: {
             "Content-Type": "application/json",
         },
     })
         .then((response) => {
-
-
             toast.success(response.data.message);
+            return response.data.data;
         }).catch(() => {
-            toast.error("Error Occured")
-
-        }
-    );
+                toast.error("Error Occured")
+            }
+        );
 }

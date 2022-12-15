@@ -58,9 +58,9 @@ export default function Home() {
             hasGym:additionalFeatures.includes("Spor Salonu Var")
 
         }
-        console.log("react")
-        console.log(queryObject)
-        sendQuery(queryObject);
+        sendQuery(queryObject).then( (response) => {
+            console.log(response)
+        });
     }
     return (
         <Box sx={{m:2,p:5}}>
