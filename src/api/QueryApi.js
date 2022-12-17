@@ -51,7 +51,13 @@ export async function sendQuery(queryObject) {
         hasDoorman                :queryObject.hasDoorman,
         hasChildPark              :queryObject.hasChildPark,
         isEarthquakeResistant     :queryObject.isEarthquakeResistant,
-        hasWalkingPath            :queryObject.hasWalkingPath
+        hasWalkingPath            :queryObject.hasWalkingPath,
+        distanceOfRestaurants     :queryObject.distanceOfRestaurants,
+        distanceOfBusStation      :queryObject.distanceOfBusStation,
+        distanceOfHospital        :queryObject.distanceOfHospital,
+        distanceOfAVM             :queryObject.distanceOfAVM,
+        distanceOfSchool          :queryObject.distanceOfSchool          ,
+        heatingType: queryObject.heatingType
 
     }
     console.log(JSON.stringify(queryRequest))

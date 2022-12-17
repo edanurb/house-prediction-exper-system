@@ -25,6 +25,8 @@ export default function Home() {
         "Internet Altyapısı Var","Giyinme Odası Var",
     "Kapıcı Var","Çocuk Parkı Var","Depreme Dayanıklı",
         "Yürüme Yolu Var"]
+    const heatingTypes=   ['Kombi', 'Merkezi', 'Yerden Isıtma', 'Soba']
+
 
     const [roomNumber, setRoomNumber] = useState(0);
     const [netMetersquare, setNetMeterSquare] = useState(0)
@@ -38,7 +40,13 @@ export default function Home() {
     const[district,setDistrict]=useState("");
     const [distanceOfMetro,setDistanceOfMetro]=useState(0)
     const [distanceOfMarket,setDistanceOfMarket]=useState(0)
-
+    const [distanceOfRestaurants,setDistanceOfRestaurants]=useState(0)
+    const [distanceOfBusStation,setDistanceOfBusStation]=useState(0)
+    const [distanceOfHospital,setDistanceOfHospital]=useState(0)
+    const [distanceOfAVM,setDistanceOfAVM]=useState(0)
+    const [distanceOfSchool,setDistanceOfSchool]=useState(0)
+    const[heatingType,setHeatingType]=useState("")
+    const [result,setResult]=useState(0);
     function query() {
 
         let queryObject = {
@@ -86,20 +94,28 @@ export default function Home() {
             hasDoorman:additionalFeatures.includes("Kapıcı Var"),
             hasChildPark:additionalFeatures.includes("Çocuk Parkı Var"),
             isEarthquakeResistant:additionalFeatures.includes("Depreme Dayanıklı"),
-            hasWalkingPath:additionalFeatures.includes("Yürüme Yolu Var")
+            hasWalkingPath:additionalFeatures.includes("Yürüme Yolu Var")  ,
+            distanceOfRestaurants:parseInt(distanceOfRestaurants),
+            distanceOfBusStation :parseInt(distanceOfBusStation),
+            distanceOfHospital   :parseInt(distanceOfHospital),
+            distanceOfAVM        :parseInt(distanceOfAVM),
+            distanceOfSchool     :parseInt(distanceOfSchool)             ,
+            heatingType:heatingType
         }
         sendQuery(queryObject).then( (response) => {
-            console.log(response)
+            setResult(response)
+            console.log("response"+ response)
         });
     }
     return (
         <Box sx={{m:2,p:5}}>
             <Box sx={{ display: 'grid' ,gap:4,gridTemplateColumns: '1fr 1fr'}}>
-                <SelectBox label="İlçe" selectValues={ilceValues} setterFunction={setNeighourhood}  neighbourhood={neighbourhood}/>
+                <SelectBox label="İlçe" selectValues={ilceValues.sort()} setterFunction={setNeighourhood}  neighbourhood={neighbourhood}/>
 
                 <TextBox label="Semt" setterFunction={setDistrict} value={district}/>
                 <SelectBox label="Eşya Durumu" selectValues={esyaDurumu} setterFunction={setIsFurnished}
                                    isFurnished={isFurnished}/>
+                <SelectBox label="Isınma Tipi" selectValues={heatingTypes.sort()} setterFunction={setHeatingType}  neighbourhood={heatingType}/>
                 <MultipleSelectInput label="Cephe" values={cephe} setterFunction={setFront} value={front}/>
 
                 <NumberText label="Toplam Oda Sayısı" setterFunction={setRoomNumber} value={roomNumber}/>
@@ -119,12 +135,18 @@ export default function Home() {
 
             <NumberText label="Metroya Olan Uzaklık(metre)" setterFunction={setDistanceOfMetro} value={distanceOfMetro}/>
             <NumberText label="Markete Olan Uzaklık(metre)" setterFunction={setDistanceOfMarket} value={distanceOfMarket}/>
+            <NumberText label="Restorantlara Olan Uzaklık(metre)" setterFunction={setDistanceOfRestaurants} value={distanceOfRestaurants}/>
+            <NumberText label="Otobüs Duraklarına Olan Uzaklık(metre)" setterFunction={setDistanceOfBusStation} value={distanceOfBusStation}/>
+            <NumberText label="Hastane Olan Uzaklık(metre)" setterFunction={setDistanceOfHospital} value={distanceOfHospital}/>
+            <NumberText label="AVM ye Olan Uzaklık(metre)" setterFunction={setDistanceOfAVM} value={distanceOfAVM}/>
+            <NumberText label="Okula Olan Uzaklık(metre)" setterFunction={setDistanceOfSchool} value={distanceOfSchool}/>
 
             </Box>
             <Button onClick={() => {
                 query()
             }} variant="contained" sx={{mt:4}}>Sorgula</Button>
                 <br/>
+            <h2>Result {result!==0 ? result:""}</h2>
         </Box>
 
     );
